@@ -6,7 +6,7 @@ A home Security Operations Center built on an Apple Silicon MacBook: a Windows 1
 instrumented with **Sysmon**, a **Wazuh SIEM** on Ubuntu Server, custom **MITRE ATT&CK**-mapped
 detections managed as code, and automated **Discord** alerting.
 
-▶️ **Demo video:** _coming soon_
+
 
 ## Architecture
 
