@@ -1,0 +1,22 @@
+title: Certutil Used to Download a File
+id: 1da84ffa-b90e-4b87-b7e9-46b20d7063d5
+status: experimental
+description: Detects certutil.exe with -urlcache, a built-in Windows tool abused to download files.
+references:
+  - https://attack.mitre.org/techniques/T1105/
+author: Home SOC Lab
+date: 2026-11-11
+tags:
+  - attack.command-and-control
+  - attack.t1105
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    Image|endswith: '\certutil.exe'
+    CommandLine|contains: 'urlcache'
+  condition: selection
+falsepositives:
+  - Rare admin use to fetch certificate revocation lists
+level: high

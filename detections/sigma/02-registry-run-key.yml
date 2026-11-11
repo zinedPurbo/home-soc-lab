@@ -1,0 +1,23 @@
+title: Registry Run Key Persistence
+id: 1b09cfc7-1e8d-4684-8ccd-628622864561
+status: experimental
+description: Detects a value written to a Run/RunOnce registry key, which makes a program start at every logon.
+references:
+  - https://attack.mitre.org/techniques/T1547/001/
+author: Home SOC Lab
+date: 2026-11-11
+tags:
+  - attack.persistence
+  - attack.t1547.001
+logsource:
+  product: windows
+  category: registry_set
+detection:
+  selection:
+    TargetObject|contains:
+      - '\Software\Microsoft\Windows\CurrentVersion\Run\'
+      - '\Software\Microsoft\Windows\CurrentVersion\RunOnce\'
+  condition: selection
+falsepositives:
+  - Legitimate software installers and updaters
+level: medium

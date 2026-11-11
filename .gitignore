@@ -1,0 +1,16 @@
+# Secrets — never commit these
+*.env
+.env*
+secrets*
+*webhook*.txt
+wazuh-install-files.tar
+wazuh-passwords.txt
+*.pem
+*.key
+
+# OS / editor noise
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+*.excalidraw.bak

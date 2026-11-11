@@ -1,0 +1,26 @@
+name: Validate detections
+
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate Sigma rules
+        run: |
+          pip install sigma-cli
+          sigma check detections/sigma/
+
+      - name: Validate Wazuh rule XML
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq libxml2-utils
+          xmllint --noout detections/wazuh/local_rules.xml configs/*.xml
+
+      - name: Test Discord integration
+        run: python tests/test_custom_discord.py
