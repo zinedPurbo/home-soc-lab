@@ -5,7 +5,7 @@ Host: MacBook Pro (M1 Pro, 16 GB) running UTM. Both VMs use the **QEMU** backend
 | VM | OS | RAM / CPU / Disk | IP |
 |---|---|---|---|
 | `wazuh-server` | Ubuntu Server 24.04.5 ARM64 | 6 GB / 4 / 60 GB | 192.168.64.4 |
-| `win11-lab` | Windows 11 ARM | 4 GB / 2 / — | 192.168.64.x |
+| `windows-11-lab` | Windows 11 ARM | 4 GB / 2 / — | 192.168.64.2 |
 
 ## 1. Wazuh server (Ubuntu)
 
@@ -26,7 +26,7 @@ Get-Service Sysmon*
 
 ## 3. Wazuh agent (Windows)
 
-1. Dashboard → Agents → Deploy new agent → Windows MSI, server `192.168.64.4`, name `win11-lab`; run the generated command.
+1. Dashboard → Agents → Deploy new agent → Windows MSI, server `192.168.64.4`, name `windows-11-lab`; run the generated command.
 2. Add [`configs/ossec-agent-sysmon.xml`](../configs/ossec-agent-sysmon.xml) to the agent's `ossec.conf`.
 3. `Restart-Service WazuhSvc`
 

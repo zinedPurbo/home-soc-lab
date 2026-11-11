@@ -5,6 +5,8 @@ Wazuh calls this with: <alert_file> <api_key> <hook_url>
 The hook URL comes from <hook_url> in ossec.conf - it is never stored in this repo.
 """
 import json
+import os
+import ssl
 import sys
 import urllib.request
 
@@ -31,7 +33,10 @@ def main(argv):
         data=payload,
         headers={"Content-Type": "application/json", "User-Agent": "home-soc-lab-wazuh"},
     )
-    urllib.request.urlopen(req, timeout=10)
+    # Wazuh's bundled Python has no CA store, so trust the OS bundle (Ubuntu path) when present.
+    ca = "/etc/ssl/certs/ca-certificates.crt"
+    ctx = ssl.create_default_context(cafile=ca if os.path.exists(ca) else None)
+    urllib.request.urlopen(req, timeout=10, context=ctx)
 
 
 if __name__ == "__main__":
