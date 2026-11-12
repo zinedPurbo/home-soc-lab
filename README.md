@@ -17,7 +17,7 @@ detections managed as code, and automated **Discord** alerting.
 | Windows 11 ARM (UTM / QEMU) | Monitored endpoint | Sysmon (SwiftOnSecurity config) + Wazuh agent |
 | Ubuntu Server 24.04 ARM (UTM / QEMU) | SIEM | Wazuh 4.14 manager, indexer, dashboard |
 | Discord `#alerts` | Notifications | Custom Wazuh integration, alerts ≥ level 10 |
-| GitHub Actions | Detection-as-code | Validates Sigma + Wazuh rules on every push |
+| GitHub Actions | Detection as code | Validates Sigma + Wazuh rules on every push |
 
 Network: UTM Shared Network `192.168.64.0/24` (isolated NAT on the host).
 
