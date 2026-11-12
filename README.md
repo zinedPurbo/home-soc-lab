@@ -29,13 +29,13 @@ Network: UTM Shared Network `192.168.64.0/24` (isolated NAT on the host).
 | 02 | Registry Run-key persistence | T1547.001 | Sysmon EID 13 | 100101 | [sigma](detections/sigma/02-registry-run-key.yml) | [proof](screenshots/08-detection-02-runkey.png) |
 | 03 | Certutil used to download a file | T1105 | Sysmon EID 1 | 100102 | [sigma](detections/sigma/03-certutil-download.yml) | [proof](screenshots/09-detection-03-certutil.png) |
 
-Full write-ups (test performed, log evidence, false positives, tuning): [docs/detections.md](docs/detections.md)
+Full write ups (test performed, log evidence, false positives, tuning): [docs/detections.md](docs/detections.md)
 
 ![MITRE ATT&CK view](screenshots/10-mitre-attack-view.png)
 
 ## Alert triage & tuning
 
-Two noisy **built-in** Wazuh rules were investigated, proven benign, and tuned narrowly (details in [docs/detections.md](docs/detections.md#alert-triage-false-positives)):
+Two noisy **built in** Wazuh rules were investigated, proven benign, and tuned narrowly (details in [docs/detections.md](docs/detections.md#alert-triage-false-positives)):
 
 | # | Alert | Root cause | Tuning |
 |---|---|---|---|
