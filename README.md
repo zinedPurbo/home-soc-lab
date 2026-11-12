@@ -1,4 +1,4 @@
-# Home SOC Lab — Threat Detection & Automated Alerting with Wazuh
+# Home SOC Lab Threat Detection & Automated Alerting with Wazuh
 
 ![Validate detections](https://github.com/zinedPurbo/home-soc-lab/actions/workflows/validate.yml/badge.svg)
 
