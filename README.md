@@ -15,7 +15,7 @@ detections managed as code, and automated **Discord** alerting.
 | Component | Role | Details |
 |---|---|---|
 | Windows 11 ARM (UTM / QEMU) | Monitored endpoint | Sysmon (SwiftOnSecurity config) + Wazuh agent |
-| Ubuntu Server 24.04 ARM (UTM / QEMU) | SIEM | Wazuh 4.14 — manager, indexer, dashboard |
+| Ubuntu Server 24.04 ARM (UTM / QEMU) | SIEM | Wazuh 4.14 manager, indexer, dashboard |
 | Discord `#alerts` | Notifications | Custom Wazuh integration, alerts ≥ level 10 |
 | GitHub Actions | Detection-as-code | Validates Sigma + Wazuh rules on every push |
 
@@ -26,7 +26,7 @@ Network: UTM Shared Network `192.168.64.0/24` (isolated NAT on the host).
 | # | Detection | MITRE ATT&CK | Log source | Wazuh rule | Sigma rule | Proof |
 |---|---|---|---|---|---|---|
 | 01 | PowerShell encoded command | T1059.001 | Sysmon EID 1 | 100100 | [sigma](detections/sigma/01-powershell-encoded-command.yml) | [proof](screenshots/07-detection-01-powershell.png) |
-| 02 | Registry Run-key persistence | T1547.001 | Sysmon EID 13 | 100101 | [sigma](detections/sigma/02-registry-run-key.yml) | [proof](screenshots/08-detection-02-runkey.png) |
+| 02 | Registry Run key persistence | T1547.001 | Sysmon EID 13 | 100101 | [sigma](detections/sigma/02-registry-run-key.yml) | [proof](screenshots/08-detection-02-runkey.png) |
 | 03 | Certutil used to download a file | T1105 | Sysmon EID 1 | 100102 | [sigma](detections/sigma/03-certutil-download.yml) | [proof](screenshots/09-detection-03-certutil.png) |
 
 Full write ups (test performed, log evidence, false positives, tuning): [docs/detections.md](docs/detections.md)
