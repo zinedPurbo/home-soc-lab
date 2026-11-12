@@ -46,7 +46,7 @@ Two noisy **built in** Wazuh rules were investigated, proven benign, and tuned n
 
 ## Automated alerting
 
-High-severity alerts are pushed to Discord by [`integrations/custom-discord.py`](integrations/custom-discord.py).
+High severity alerts are pushed to Discord by [`integrations/custom-discord.py`](integrations/custom-discord.py).
 The webhook URL lives only in the server's `ossec.conf` and is never committed.
 
 ![Discord alert](screenshots/11-discord-alert.png)
@@ -58,12 +58,12 @@ Python · GitHub Actions CI · Linux administration · Virtualization (UTM/QEMU 
 
 ## Build log & lessons learned
 
-- Ran the whole lab on Apple Silicon (ARM64) — chose ARM builds of Windows 11, Ubuntu, Sysmon (`Sysmon64a.exe`) and Wazuh.
+- Ran the whole lab on Apple Silicon (ARM64) chose ARM builds of Windows 11, Ubuntu, Sysmon (`Sysmon64a.exe`) and Wazuh.
 - Diagnosed a VM network split (Apple Virtualization vs QEMU backends land on different NAT subnets) and moved both VMs to QEMU.
-- Fixed a black-screen boot by switching the UTM display card from `virtio-gpu-gl-pci` to `virtio-gpu-pci` with OpenGL off.
+- Fixed a black screen boot by switching the UTM display card from `virtio-gpu-gl-pci` to `virtio-gpu-pci` with OpenGL off.
 - Wazuh's generic `4.x` installer URL started returning *Access Denied*; pinned the versioned `4.14` URL and added `curl -f` so a failed download stops instead of executing an error page.
 - Rotated a Discord webhook secret after it was exposed in plain text.
-- Run-key rule (100101) silently missed at first. Debugging showed two causes: Wazuh's built-in rule 92302 claimed the event first (fixed by chaining `if_sid` off it), and Wazuh stores Windows paths with doubled backslashes (fixed the regex to `\\+`). Re-tested until it fired.
+- Run-key rule (100101) silently missed at first. Debugging showed two causes: Wazuh's built in rule 92302 claimed the event first (fixed by chaining `if_sid` off it), and Wazuh stores Windows paths with doubled backslashes (fixed the regex to `\\+`). Re-tested until it fired.
 - Certutil download test was blocked outright by Defender (no process, so no Sysmon event). Validated rule 100102 with a benign `certutil -urlcache *` instead, a reminder that prevention and detection are separate layers.
 - Discord alerts silently never arrived even though `curl` to the webhook worked. `ossec.log` showed `CERTIFICATE_VERIFY_FAILED`: Wazuh's bundled Python has no CA store. Fixed by loading Ubuntu's system CA bundle in the integration script (kept TLS verification on rather than disabling it).
 
